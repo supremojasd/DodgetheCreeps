@@ -1,0 +1,67 @@
+[gd_scene load_steps=10 format=3 uid="uid://dr77iy7ynl8xh"]
+
+[ext_resource type="Texture2D" uid="uid://c1gbeithjp67l" path="res://art/enemyFlyingAlt_1.png" id="1_4vox8"]
+[ext_resource type="Script" path="res://San Diego/mob.gd" id="1_qdul3"]
+[ext_resource type="Texture2D" uid="uid://d3gvpjrf4r8sh" path="res://art/enemyFlyingAlt_2.png" id="2_r5o8h"]
+[ext_resource type="Texture2D" uid="uid://dcmawulnerro8" path="res://art/enemySwimming_1.png" id="3_1e6p4"]
+[ext_resource type="Texture2D" uid="uid://byfiyjwoayhes" path="res://art/enemySwimming_2.png" id="4_lxoi1"]
+[ext_resource type="Texture2D" uid="uid://caesf8baty1jm" path="res://art/enemyWalking_1.png" id="5_3phet"]
+[ext_resource type="Texture2D" uid="uid://dg2f1h4umvm6y" path="res://art/enemyWalking_2.png" id="6_utlcu"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u2c6d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_4vox8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_r5o8h")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_1e6p4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_lxoi1")
+}],
+"loop": true,
+"name": &"swim",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_3phet")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_utlcu")
+}],
+"loop": true,
+"name": &"walk ",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yv8jy"]
+radius = 25.0102
+height = 67.9713
+
+[node name="Mob" type="RigidBody2D"]
+position = Vector2(234, 91)
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_qdul3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["mobs"]]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_u2c6d")
+animation = &"swim"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.55887
+shape = SubResource("CapsuleShape2D_yv8jy")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(0, 1)
